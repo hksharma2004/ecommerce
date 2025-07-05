@@ -7,21 +7,43 @@ if (!cached) {
 }
 
 async function connectDB() {
-  if (cached.conn) return cached.conn;
+  if (cached.conn) {
+    console.log('✅ Using existing MongoDB connection');
+    return cached.conn;
+  }
+
+  // Check if MongoDB URI exists
+  if (!process.env.MONGODB_URI) {
+    console.error('❌ MONGODB_URI environment variable is not defined');
+    throw new Error('MONGODB_URI environment variable is not defined');
+  }
 
   if (!cached.promise) {
     const opts = {
       bufferCommands: false,
-      dbName: "quickcart", // ✅ Explicit DB name
+      dbName: "quickcart",
     };
 
+    console.log('🔄 Connecting to MongoDB...');
+    
+    // Use the environment variable here - NOT the hardcoded URI
     cached.promise = mongoose.connect(process.env.MONGODB_URI, opts).then((mongoose) => {
+      console.log('✅ MongoDB connected successfully');
       return mongoose;
+    }).catch((error) => {
+      console.error('❌ MongoDB connection error:', error);
+      throw error;
     });
   }
 
-  cached.conn = await cached.promise;
-  return cached.conn;
+  try {
+    cached.conn = await cached.promise;
+    return cached.conn;
+  } catch (error) {
+    console.error('❌ Failed to establish MongoDB connection:', error);
+    cached.promise = null;
+    throw error;
+  }
 }
 
 export default connectDB;
