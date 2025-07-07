@@ -40,12 +40,12 @@ const nextConfig = {
   experimental: {
     esmExternals: true,
     // Suppress warnings about experimental features
-    serverComponentsExternalPackages: ['styled-jsx'],
+    // Note: serverComponentsExternalPackages is now moved to serverExternalPackages above
   },
 
   // Optimize for production builds
   productionBrowserSourceMaps: false,
-  optimizeFonts: true,
+  // Note: optimizeFonts is now enabled by default in Next.js 15
   compress: true,
 
   webpack: (config, { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }) => {
@@ -64,6 +64,7 @@ const nextConfig = {
         /serialize-error-cjs/,
         /You or someone you depend on is using Q/,
         /Module not found/,
+        /regenerate-unicode-properties/,
       ],
     };
 
