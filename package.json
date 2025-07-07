@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=18.0.0",
+    "node": "18.x",
     "npm": ">=8.0.0"
   },
   "scripts": {
@@ -25,7 +25,8 @@
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.5.2",
     "react-toastify": "^11.0.5",
-    "styled-jsx": "^5.1.7"
+    "styled-jsx": "^5.1.7",
+    "regenerate-unicode-properties": "^10.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
@@ -36,9 +37,10 @@
   },
   "overrides": {
     "serialize-error-cjs": "0.2.0",
-    "q": "npm:@endo/eventual-send@^1.0.0"
+    "q": "1.5.1"
   },
   "resolutions": {
-    "serialize-error-cjs": "0.2.0"
+    "serialize-error-cjs": "0.2.0",
+    "q": "1.5.1"
   }
 }
