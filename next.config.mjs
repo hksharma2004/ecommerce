@@ -15,9 +15,6 @@ const nextConfig = {
     ],
   },
 
-  // Removed transpilePackages to avoid conflict
-  // transpilePackages: ['styled-jsx'],
-
   compiler: {
     styledJsx: true,
   },
@@ -33,17 +30,9 @@ const nextConfig = {
 
   experimental: {
     esmExternals: true,
-    // Removed serverComponentsExternalPackages - moved to serverExternalPackages above
   },
 
   webpack: (config, { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }) => {
-    // Fix for ES modules - use dynamic import or alternative approach
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      // Remove the require.resolve as it's not available in ES modules
-      // styled-jsx should be handled by serverExternalPackages instead
-    };
-
     config.resolve.fallback = {
       ...config.resolve.fallback,
       fs: false,
