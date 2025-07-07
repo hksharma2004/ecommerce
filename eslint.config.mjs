@@ -12,13 +12,30 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals"),
   {
-    // Fix serialization issues by avoiding function values
+    // Combined language options to ensure proper parsing
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: "module",
+      parserOptions: {
+        ecmaVersion: "latest",
+        sourceType: "module",
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
     },
     rules: {
-      // Add any custom rules here if needed
+      // Add or override rules here
+      // Disabling rule to prevent serialization issues
+      'import/no-anonymous-default-export': 'off',
+    },
+    settings: {
+      react: {
+        version: 'detect',
+      },
+      next: {
+        rootDir: '.',
+      },
     },
   },
 ];
