@@ -15,37 +15,30 @@ const nextConfig = {
     ],
   },
 
-  // Fix styled-jsx issues
-  transpilePackages: ['styled-jsx'],
+  // Removed transpilePackages to avoid conflict
+  // transpilePackages: ['styled-jsx'],
 
-  // Enable styled-jsx compiler flag
   compiler: {
     styledJsx: true,
   },
 
-  // Optimize for deployment
   poweredByHeader: false,
 
-  // Fix ESLint serialization issues during build
   eslint: {
     ignoreDuringBuilds: false,
   },
 
-  // Enable experimental features
   experimental: {
     esmExternals: true,
-    serverComponentsExternalPackages: ['styled-jsx'],
+    serverComponentsExternalPackages: ['styled-jsx'], // Keep this only
   },
 
-  // Webpack configuration
   webpack: (config, { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }) => {
-    // Fix styled-jsx resolution
     config.resolve.alias = {
       ...config.resolve.alias,
       'styled-jsx': require.resolve('styled-jsx'),
     };
 
-    // Add fallbacks for Node core modules to prevent build errors
     config.resolve.fallback = {
       ...config.resolve.fallback,
       fs: false,
@@ -59,3 +52,4 @@ const nextConfig = {
 };
 
 export default nextConfig;
+
