@@ -12,22 +12,23 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals"),
   {
-    // Add custom rules to prevent serialization issues
-    rules: {
-      // Disable rules that can cause serialization issues during build
-      'import/no-anonymous-default-export': 'off',
-    },
-    // Configure parser options to avoid serialization issues
+    // Combined language options to ensure proper parsing
     languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: "module",
       parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
+        ecmaVersion: "latest",
+        sourceType: "module",
         ecmaFeatures: {
           jsx: true,
         },
       },
     },
-    // Ensure settings don't contain non-serializable values
+    rules: {
+      // Add or override rules here
+      // Disabling rule to prevent serialization issues
+      'import/no-anonymous-default-export': 'off',
+    },
     settings: {
       react: {
         version: 'detect',
