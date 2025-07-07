@@ -28,15 +28,20 @@ const nextConfig = {
     ignoreDuringBuilds: false,
   },
 
+  // Updated for Next.js 15 - moved from experimental.serverComponentsExternalPackages
+  serverExternalPackages: ['styled-jsx'],
+
   experimental: {
     esmExternals: true,
-    serverComponentsExternalPackages: ['styled-jsx'], // Keep this only
+    // Removed serverComponentsExternalPackages - moved to serverExternalPackages above
   },
 
   webpack: (config, { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }) => {
+    // Fix for ES modules - use dynamic import or alternative approach
     config.resolve.alias = {
       ...config.resolve.alias,
-      'styled-jsx': require.resolve('styled-jsx'),
+      // Remove the require.resolve as it's not available in ES modules
+      // styled-jsx should be handled by serverExternalPackages instead
     };
 
     config.resolve.fallback = {
@@ -52,4 +57,3 @@ const nextConfig = {
 };
 
 export default nextConfig;
-
