@@ -19,7 +19,7 @@ const nextConfig = {
   // transpilePackages: ['styled-jsx'],
 
   compiler: {
-    styledJsx: true,
+    // Removed styled-jsx since we're using Tailwind CSS
   },
 
   poweredByHeader: false,
@@ -30,13 +30,11 @@ const nextConfig = {
 
   experimental: {
     esmExternals: true,
-    serverComponentsExternalPackages: ['styled-jsx'], // Keep this only
   },
 
   webpack: (config, { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      'styled-jsx': require.resolve('styled-jsx'),
     };
 
     config.resolve.fallback = {
@@ -52,4 +50,3 @@ const nextConfig = {
 };
 
 export default nextConfig;
-

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { assets } from "@/assets/assets";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const HeaderSlider = () => {
+  const router = useRouter();
   const sliderData = [
     {
       id: 1,
+      productId: "67a1f52e3f34a77b6dde914a", // Bose QuietComfort 45
       title: "Experience Pure Sound - Your Perfect Headphones Awaits!",
       offer: "Limited Time Offer 30% Off",
       buttonText1: "Buy now",
@@ -14,6 +17,7 @@ const HeaderSlider = () => {
     },
     {
       id: 2,
+      productId: "67a1f5ef3f34a77b6dde9150", // PlayStation 5
       title: "Next-Level Gaming Starts Here - Discover PlayStation 5 Today!",
       offer: "Hurry up only few lefts!",
       buttonText1: "Shop Now",
@@ -22,6 +26,7 @@ const HeaderSlider = () => {
     },
     {
       id: 3,
+      productId: "67a1f7c93f34a77b6dde915a", // MacBook Pro 16
       title: "Power Meets Elegance - Apple MacBook Pro is Here for you!",
       offer: "Exclusive Deal 40% Off",
       buttonText1: "Order Now",
@@ -29,6 +34,10 @@ const HeaderSlider = () => {
       imgSrc: assets.header_macbook_image,
     },
   ];
+
+  const handleBuyNow = () => {
+    router.push('/all-products');
+  };
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -62,7 +71,10 @@ const HeaderSlider = () => {
                 {slide.title}
               </h1>
               <div className="flex items-center mt-4 md:mt-6 ">
-                <button className="md:px-10 px-7 md:py-2.5 py-2 bg-orange-600 rounded-full text-white font-medium">
+                <button 
+                  onClick={handleBuyNow}
+                  className="md:px-10 px-7 md:py-2.5 py-2 bg-orange-600 rounded-full text-white font-medium"
+                >
                   {slide.buttonText1}
                 </button>
                 <button className="group flex items-center gap-2 px-6 py-2.5 font-medium">
