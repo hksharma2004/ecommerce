@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { assets, CartIcon } from "@/assets/assets";
 import Link from "next/link";
 import { useAppContext } from "@/context/AppContext";
@@ -11,6 +11,8 @@ const Navbar = () => {
   const { isSeller, router } = useAppContext();
   const { openSignIn } = useClerk();
   const { user, isSignedIn } = useUser();
+  const [showSearch, setShowSearch] = React.useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleAccountClick = () => {
     if (!isSignedIn) {
@@ -38,10 +40,10 @@ const Navbar = () => {
         <Link href="/all-products" className="hover:text-gray-900 transition">
           Shop
         </Link>
-        <Link href="/" className="hover:text-gray-900 transition">
+        <Link href="/about-us" className="hover:text-gray-900 transition">
           About Us
         </Link>
-        <Link href="/" className="hover:text-gray-900 transition">
+        <Link href="/contact-us" className="hover:text-gray-900 transition">
           Contact
         </Link>
 
@@ -57,12 +59,33 @@ const Navbar = () => {
 
       {/* Right icons */}
       <ul className="hidden md:flex items-center gap-4">
-        <Image
-          className="w-4 h-4 cursor-pointer"
-          src={assets.search_icon}
-          alt="search icon"
-          onClick={() => router.push("/search")}
-        />
+        <div className="relative">
+          <Image
+            className="w-4 h-4 cursor-pointer"
+            src={assets.search_icon}
+            alt="search icon"
+            onClick={() => setShowSearch(!showSearch)}
+          />
+          {showSearch && (
+            <form 
+              className="absolute top-full right-0 mt-2 p-2 bg-white shadow-lg rounded z-50 min-w-[300px]"
+              onSubmit={(e) => {
+                e.preventDefault();
+                router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
+                setSearchQuery("");
+              }}
+            >
+<input
+  type="text"
+  name="search"
+  placeholder="Search products..."
+  className="w-full bg-transparent outline-none px-4 py-2"
+  value={searchQuery}
+  onChange={(e) => setSearchQuery(e.target.value)}
+/>
+            </form>
+          )}
+        </div>
 
         {/* Cart Icon */}
         {isSignedIn && (

@@ -16,7 +16,7 @@ const nextConfig = {
   },
 
   compiler: {
-    styledJsx: true,
+    // Removed styled-jsx since we're using Tailwind CSS
   },
 
   poweredByHeader: false,
@@ -39,8 +39,6 @@ const nextConfig = {
 
   experimental: {
     esmExternals: true,
-    // Suppress warnings about experimental features
-    // Note: serverComponentsExternalPackages is now moved to serverExternalPackages above
   },
 
   // Optimize for production builds
@@ -49,6 +47,10 @@ const nextConfig = {
   compress: true,
 
   webpack: (config, { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+    };
+
     config.resolve.fallback = {
       ...config.resolve.fallback,
       fs: false,
@@ -91,3 +93,4 @@ const nextConfig = {
 };
 
 export default nextConfig;
+
