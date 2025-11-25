@@ -45,7 +45,6 @@ const nextConfig = {
   productionBrowserSourceMaps: false,
   // Note: optimizeFonts is now enabled by default in Next.js 15
   compress: true,
-
   webpack: (config, { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
