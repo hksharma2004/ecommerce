@@ -28,10 +28,6 @@ const nextConfig = {
     ignoreDuringBuilds: false,
   },
 
-  experimental: {
-    esmExternals: true,
-  },
-
   webpack: (config, { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }) => {
     config.resolve.alias = {
       ...config.resolve.alias,

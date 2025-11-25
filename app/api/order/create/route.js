@@ -1,4 +1,4 @@
-import { connectDB } from "@/config/db";
+import connectDB from "@/config/db";
 import Product from "@/models/Product";
 import { getAuth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
@@ -30,15 +30,15 @@ const orderSchema = z.object({
 export async function POST(request) {
   const session = await mongoose.startSession();
   session.startTransaction();
-  
+
   try {
     await connectDB();
     const { userId } = getAuth(request);
-    
+
     if (!userId) {
       await session.abortTransaction();
       return NextResponse.json(
-        { error: 'Unauthorized: Please login to place an order' }, 
+        { error: 'Unauthorized: Please login to place an order' },
         { status: 401 }
       );
     }
@@ -59,7 +59,7 @@ export async function POST(request) {
     if (!validation.success) {
       await session.abortTransaction();
       return NextResponse.json(
-        { 
+        {
           error: 'Validation failed',
           details: validation.error.format(),
           message: 'Please check your order details'
@@ -129,7 +129,7 @@ export async function POST(request) {
 
     // Clear user cart
     await User.findByIdAndUpdate(
-      userId, 
+      userId,
       { cartItems: {} },
       { session }
     );
@@ -140,47 +140,10 @@ export async function POST(request) {
     // Send event after successful DB operations
     await inngest.send(orderEvent);
 
-    // Send confirmation email
-    try {
-      if (!process.env.RESEND_API_KEY) {
-        console.error('Resend API key missing');
-        throw new Error('Email service configuration error');
-      }
 
-      const resend = new Resend(process.env.RESEND_API_KEY);
-      const customer = await User.findById(userId);
-      
-      if (!customer?.email) {
-        console.error('No customer email found for user:', userId);
-        throw new Error('Customer email not found');
-      }
-
-      const emailContent = `
-        <h1>Order Confirmation</h1>
-        <p>Thank you for your order!</p>
-        <p>Order ID: ${orderEvent.data.date}</p>
-        <p>Total Amount: $${(total/100).toFixed(2)}</p>
-      `;
-
-      const emailResponse = await resend.emails.send({
-        from: 'QuickCart <onboarding@resend.dev>',
-        to: [customer.email],
-        subject: 'Order Confirmation',
-        html: emailContent
-      });
-
-      console.log('Email sent successfully:', emailResponse);
-    } catch (emailError) {
-      console.error('Failed to send confirmation email:', {
-        error: emailError.message,
-        stack: emailError.stack,
-        userId
-      });
-      // Continue with order processing even if email fails
-    }
 
     return NextResponse.json(
-      { 
+      {
         success: true,
         orderId: orderEvent.data.date,
         amount: total,
@@ -199,7 +162,7 @@ export async function POST(request) {
     });
 
     return NextResponse.json(
-      { 
+      {
         error: error.message || 'Failed to process order',
         code: error.code || 'ORDER_PROCESSING_ERROR',
         details: error.details || null
