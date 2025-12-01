@@ -12,7 +12,7 @@ async function connectDB() {
     return cached.conn;
   }
 
-  // Check if MongoDB URI exists
+
   if (!process.env.MONGODB_URI) {
     console.error('❌ MONGODB_URI environment variable is not defined');
     throw new Error('MONGODB_URI environment variable is not defined');
@@ -25,8 +25,8 @@ async function connectDB() {
     };
 
     console.log('🔄 Connecting to MongoDB...');
-    
-    // Use the environment variable here - NOT the hardcoded URI
+
+
     cached.promise = mongoose.connect(process.env.MONGODB_URI, opts).then((mongoose) => {
       console.log('✅ MongoDB connected successfully');
       return mongoose;
