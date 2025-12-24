@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { assets } from "@/assets/assets";
+import { assets, productsDummyData } from "@/assets/assets";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -9,23 +9,15 @@ const FeaturedProduct = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch('/api/product/list');
-        const data = await response.json();
-        if (data.success) {
-          setProducts(data.products.slice(0, 3)); // Get first 3 products
-        } else {
-          setError('Failed to fetch products');
-        }
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
+    // Determine the specific products to display based on the user requirement
+    // Indices 0, 2, and 3 correspond to Apple AirPods Pro, Samsung Galaxy S23, and Garmin Venu 2
+    const selectedProducts = [
+      productsDummyData[0],
+      productsDummyData[2],
+      productsDummyData[3]
+    ];
+    setProducts(selectedProducts);
+    setLoading(false);
   }, []);
 
   if (loading) return <div className="text-center py-10">Loading...</div>;
@@ -54,7 +46,7 @@ const FeaturedProduct = () => {
               <p className="text-sm lg:text-base leading-5">
                 ₹{product.offerPrice || product.price}
               </p>
-              <Link 
+              <Link
                 href={`/product/${product._id}`}
                 className="flex items-center gap-1.5 bg-orange-600 px-4 py-2 rounded hover:bg-orange-700 transition"
               >

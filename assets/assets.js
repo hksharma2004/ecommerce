@@ -139,10 +139,7 @@ export const productsDummyData = [
     "price": 499.99,
     "offerPrice": 399.99,
     "image": [
-      "https://raw.githubusercontent.com/avinashdm/gs-images/main/quickcart/k4dafzhwhgcn5tnoylrw.webp",
-      "https://raw.githubusercontent.com/avinashdm/gs-images/main/quickcart/j212frakb8hdrhvhajhg.webp",
-      "https://raw.githubusercontent.com/avinashdm/gs-images/main/quickcart/imwuugqxsajuwqpkegb5.webp",
-      "https://raw.githubusercontent.com/avinashdm/gs-images/main/quickcart/k1oqaslw5tb3ebw01vvj.webp"
+      apple_earphone_image
     ],
     "category": "Earphone",
     "date": 1738667236865,
@@ -156,7 +153,7 @@ export const productsDummyData = [
     "price": 429.99,
     "offerPrice": 329.99,
     "image": [
-      "https://raw.githubusercontent.com/avinashdm/gs-images/main/quickcart/m16coelz8ivkk9f0nwrz.webp"
+      bose_headphone_image
     ],
     "category": "Headphone",
     "date": 1738667310300,
@@ -170,7 +167,7 @@ export const productsDummyData = [
     "price": 899.99,
     "offerPrice": 799.99,
     "image": [
-      "https://raw.githubusercontent.com/avinashdm/gs-images/main/quickcart/xjd4eprpwqs7odbera1w.webp"
+      samsung_s23phone_image
     ],
     "category": "Smartphone",
     "date": 1738667366224,
@@ -184,7 +181,7 @@ export const productsDummyData = [
     "price": 399.99,
     "offerPrice": 349.99,
     "image": [
-      "https://raw.githubusercontent.com/avinashdm/gs-images/main/quickcart/hdfi4u3fmprazpnrnaga.webp"
+      venu_watch_image
     ],
     "category": "Earphone",
     "date": 1738667417511,
@@ -198,7 +195,7 @@ export const productsDummyData = [
     "price": 599.99,
     "offerPrice": 499.99,
     "image": [
-      "https://raw.githubusercontent.com/avinashdm/gs-images/main/quickcart/dd3l13vfoartrgbvkkh5.webp"
+      playstation_image
     ],
     "category": "Accessories",
     "date": 1738667503075,
@@ -212,7 +209,7 @@ export const productsDummyData = [
     "price": 4199.99,
     "offerPrice": 3899.99,
     "image": [
-      "https://raw.githubusercontent.com/avinashdm/gs-images/main/quickcart/r5h370zuujvrw461c6wy.webp"
+      cannon_camera_image
     ],
     "category": "Camera",
     "date": 1738667788883,
@@ -226,7 +223,7 @@ export const productsDummyData = [
     "price": 2799.99,
     "offerPrice": 2499.99,
     "image": [
-      "https://raw.githubusercontent.com/avinashdm/gs-images/main/quickcart/rzri7kytphxalrm9rubd.webp"
+      macbook_image
     ],
     "category": "Laptop",
     "date": 1738667977644,
@@ -240,7 +237,7 @@ export const productsDummyData = [
     "price": 349.99,
     "offerPrice": 299.99,
     "image": [
-      "https://raw.githubusercontent.com/avinashdm/gs-images/main/quickcart/e3zjaupyumdkladmytke.webp"
+      sony_airbuds_image
     ],
     "category": "Earphone",
     "date": 1738668086331,
@@ -254,7 +251,7 @@ export const productsDummyData = [
     "price": 1699.99,
     "offerPrice": 1499.99,
     "image": [
-      "https://raw.githubusercontent.com/avinashdm/gs-images/main/quickcart/qqdcly8a8vkyciy9g0bw.webp"
+      projector_image
     ],
     "category": "Accessories",
     "date": 1738668126660,
@@ -268,7 +265,7 @@ export const productsDummyData = [
     "price": 2199.99,
     "offerPrice": 1999.99,
     "image": [
-      "https://raw.githubusercontent.com/avinashdm/gs-images/main/quickcart/wig1urqgnkeyp4t2rtso.webp"
+      asus_laptop_image
     ],
     "category": "Laptop",
     "date": 1738668619198,
