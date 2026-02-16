@@ -37,8 +37,8 @@ const Navbar = () => {
         <Link href="/" className="hover:text-gray-900 transition">
           Home
         </Link>
-        <Link href="/all-products" className="hover:text-gray-900 transition">
-          Shop
+        <Link href="/all-products" className="hover:text-gray-900 transition flex items-center gap-1">
+          Shop <span className="bg-orange-600 text-[10px] text-white px-1.5 py-0.5 rounded-full">New</span>
         </Link>
         <Link href="/about-us" className="hover:text-gray-900 transition">
           About Us
